@@ -1,3 +1,4 @@
+// Import necessary libraries
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+// Class definition for the Stock Portfolio Application
 public class StockPortfolioApp {
     private JFrame frame;
     private JTextField tickerField, priceField, dateField, amountField;
@@ -23,6 +25,7 @@ public class StockPortfolioApp {
         showInitialDialog();
     }
 
+    // Method to display the initial dialog prompting to create or open a portfolio
     private void showInitialDialog() {
         String[] options = {"Create New Portfolio", "Open Existing Portfolio"};
         int choice = JOptionPane.showOptionDialog(null, "Choose an option:", "Stock Portfolio",
@@ -37,10 +40,12 @@ public class StockPortfolioApp {
         }
     }
 
+    // Method to create a new portfolio
     private void createNewPortfolio() {
         initialize();
     }
 
+    // Method to open an existing portfolio from a file
     private void openExistingPortfolio() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(frame);
@@ -83,6 +88,7 @@ public class StockPortfolioApp {
         }
     }
 
+    // Method to initialize the graphical user interface
     private void initialize() {
         frame = new JFrame("Stock Portfolio");
         frame.setBounds(100, 100, 600, 400);
@@ -136,6 +142,7 @@ public class StockPortfolioApp {
         frame.setVisible(true);
     }
 
+    // Method to add a record to the portfolio
     private void addRecord() {
         String ticker = tickerField.getText().trim();
         String price = priceField.getText().trim();
@@ -162,6 +169,7 @@ public class StockPortfolioApp {
             return; 
         }
     
+        // Create a vector representing a row and add it to the table model
         Vector<String> row = new Vector<>();
         row.add(ticker);
         row.add(price);
@@ -179,6 +187,7 @@ public class StockPortfolioApp {
         amountField.setText("");
     }
 
+    // Method to calculate current price and profit/loss for a given row
     private void calculatePriceAndProfitLoss(Vector<String> row) {
          try {
             double currentPrice = fetchCurrentStockPrice(row.get(0));
@@ -196,6 +205,7 @@ public class StockPortfolioApp {
         }       
     }
     
+    // Method to fetch the current stock price from an API
     private double fetchCurrentStockPrice(String ticker) throws URISyntaxException {
         String apiKey = "TV3TIQW2A0MEECWB";
         String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + ticker + "&apikey=" + apiKey;
@@ -230,6 +240,7 @@ public class StockPortfolioApp {
         return -1;
     }
 
+    // Methods to validate input data
     private boolean isValidTicker(String ticker) {
         return ticker.length() <= 4;
     }
@@ -263,6 +274,7 @@ public class StockPortfolioApp {
         }
     }
 
+    // Method to delete a selected record from the table
     private void deleteRecord() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow == -1) {
@@ -276,6 +288,7 @@ public class StockPortfolioApp {
         }
     }
 
+    // Method to save the portfolio data to a file
     private void savePortfolio() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(frame);
@@ -301,6 +314,7 @@ public class StockPortfolioApp {
         }
     }
 
+    // Main method to start the application
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new StockPortfolioApp());
     }
