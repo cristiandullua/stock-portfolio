@@ -12,7 +12,7 @@ For a detailed walkthrough of the application and the code, you can watch the de
 
 The Stock Portfolio Application was developed using the following tools:
 
-- **IDE**: IntelliJ IDEA
+- **IDE**: VS Code
 - **Programming Language**: Java
 - **Libraries/Frameworks**: javax.swing, org.json
 - **API**: Alpha Vantage API
@@ -32,3 +32,4 @@ Moving forward, here are some improvements and additions planned for the Stock P
 - Implementing user authentication and secure data storage
 - Enhancing the UI/UX for a more intuitive user experience
 - Adding support for multiple portfolios and sorting/filtering options
+- Add the functionality to periodically update the stock prices
