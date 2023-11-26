@@ -1,16 +1,11 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -75,22 +70,10 @@ public class StockPortfolioApp {
     
                 // Populate the table with the records
                 for (Vector<String> row : dataVector) {
-                    try {
-                        double currentPrice = fetchCurrentStockPrice(row.firstElement());
-                        if (currentPrice == -1) {
-                            JOptionPane.showMessageDialog(frame, "Failed to fetch current price for the stock.");
-                            return;
-                        }
-
-                        row.add(String.valueOf(currentPrice)); // Add the currentPrice to the row
-                        amountField.setText("");
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace(); // Handle the exception (print or log the error)
-                    }
+                    calculatePriceAndProfitLoss(row);
 
                     tableModel.addRow(row);
                 }
-    
             } catch (IOException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(frame, "Error reading file.");
@@ -133,6 +116,7 @@ public class StockPortfolioApp {
         tableModel.addColumn("Date");
         tableModel.addColumn("Amount");
         tableModel.addColumn("Current Price"); // Add this line to include the new column
+        tableModel.addColumn("Profit/Loss"); // Add this line to include the new column
 
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
@@ -184,19 +168,8 @@ public class StockPortfolioApp {
         row.add(date);
         row.add(amount);
         
-        try {
-            double currentPrice = fetchCurrentStockPrice(ticker);
-            if (currentPrice == -1) {
-                JOptionPane.showMessageDialog(frame, "Failed to fetch current price for the stock.");
-                return;
-            }
-
-            row.add(String.valueOf(currentPrice)); // Add the currentPrice to the row
-            amountField.setText("");
-        } catch (URISyntaxException e) {
-            e.printStackTrace(); // Handle the exception (print or log the error)
-        }
-
+        calculatePriceAndProfitLoss(row);
+        
         tableModel.addRow(row); 
     
         // Clear input fields after adding a record
@@ -206,6 +179,23 @@ public class StockPortfolioApp {
         amountField.setText("");
     }
 
+    private void calculatePriceAndProfitLoss(Vector<String> row) {
+         try {
+            double currentPrice = fetchCurrentStockPrice(row.get(0));
+            if (currentPrice == -1) {
+                JOptionPane.showMessageDialog(frame, "Failed to fetch current price for the stock.");
+            }
+
+            double enteredPrice = Double.parseDouble(row.get(1));
+            double profitLoss = ((currentPrice - enteredPrice) / enteredPrice) * 100;
+            
+            row.add(String.valueOf(currentPrice));
+            row.add(String.format("%.2f%%", profitLoss)); // Display profit/loss as a percentage
+        } catch (URISyntaxException | NumberFormatException e) {
+            e.printStackTrace(); // Handle the exception (print or log the error)
+        }       
+    }
+    
     private double fetchCurrentStockPrice(String ticker) throws URISyntaxException {
         String apiKey = "TV3TIQW2A0MEECWB";
         String apiUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + ticker + "&apikey=" + apiKey;
