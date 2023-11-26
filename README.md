@@ -1,32 +1,34 @@
 # Overview
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
+As a software engineer aiming to enhance my Java programming skills, I developed a Stock Portfolio Application as a means to showcase my understanding of Java language concepts and to further my learning in software development.
 
-{Provide a description of the software that you wrote to demonstrate the Java language.}
+The Stock Portfolio Application is a Java-based software that enables users to manage their stock portfolios. It allows users to create new portfolios, add stock records with details like ticker symbol, price, date, and amount, calculate the current price, and determine profit/loss based on the entered data.
 
-{Describe your purpose for writing this software.}
+The primary purpose behind creating this software was to demonstrate proficiency in Java programming, particularly in working with Swing for the graphical user interface, handling file I/O operations, parsing JSON data from an API, and applying basic data manipulation and validation techniques.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+For a detailed walkthrough of the application and the code, you can watch the demonstration on [YouTube](http://youtube.link.goes.here). The 4-5 minute demo covers the software in action and highlights various aspects of Java language syntax utilized in the project.
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+The Stock Portfolio Application was developed using the following tools:
 
-{Describe the programming language that you used and any libraries.}
+- **IDE**: IntelliJ IDEA
+- **Programming Language**: Java
+- **Libraries/Frameworks**: javax.swing, org.json
+- **API**: Alpha Vantage API
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
+During the development of this project, the following websites were valuable resources:
 
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
+- [Oracle Java Documentation](https://docs.oracle.com/en/java/)
+- [Stack Overflow](https://stackoverflow.com/)
+- [AlphaVantage API](https://www.alphavantage.co/documentation/)
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
+Moving forward, here are some improvements and additions planned for the Stock Portfolio Application:
 
-- Item 1
-- Item 2
-- Item 3
+- Implementing user authentication and secure data storage
+- Enhancing the UI/UX for a more intuitive user experience
+- Adding support for multiple portfolios and sorting/filtering options
