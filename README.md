@@ -6,7 +6,7 @@ The Stock Portfolio Application is a Java-based software that enables users to m
 
 The primary purpose behind creating this software was to demonstrate proficiency in Java programming, particularly in working with Swing for the graphical user interface, handling file I/O operations, parsing JSON data from an API, and applying basic data manipulation and validation techniques.
 
-For a detailed walkthrough of the application and the code, you can watch the demonstration on [YouTube](http://youtube.link.goes.here). The 4-5 minute demo covers the software in action and highlights various aspects of Java language syntax utilized in the project.
+For a detailed walkthrough of the application and the code, you can watch the demonstration on [Loom](https://www.loom.com/share/14cfcb7fe1254ee49a1caffa019a1a6c?sid=598aa0a1-8bd9-459f-a604-908dab9231e7). The 4-5 minute demo covers the software in action and highlights various aspects of Java language syntax utilized in the project.
 
 # Development Environment
 
